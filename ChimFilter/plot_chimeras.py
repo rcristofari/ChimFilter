@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 def plot_chimeras(permutation, bidirectional=None, w=20, h=10, s=60):
     plt.rcParams['figure.figsize'] = [w, h]
 

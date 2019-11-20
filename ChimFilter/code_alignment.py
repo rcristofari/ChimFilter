@@ -1,6 +1,7 @@
 # This function takes an alignment, and returns a list of SNPs, a coded version (0/1), and a windows averaging.
 # The SNP calling does not obey to any model. As these are LAA sequences, I consider them "correct" SNP wise.
 # Of course this is not true, and would need to be handled somehow using the error scores returned by LAA.
+from collections import Counter
 
 def code_alignment(sequences, names, covdict, minCov=0, ignoreSingle=True):
     # sequences is a list of DNA sequences as str
@@ -57,6 +58,9 @@ def code_alignment(sequences, names, covdict, minCov=0, ignoreSingle=True):
                     # If it passed all the criteria:
                     belonging.append([0 if s[l] == ref[l] else 1 for s in keptSequences])
                     SNPs.append(l)
+
+    if not SNPs:
+        return(None)
 
     nSNPs = len(SNPs)
     coded = [[belonging[p][s] for p in range(nSNPs)] for s in range(len(keptSequences))]

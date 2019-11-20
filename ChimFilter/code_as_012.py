@@ -32,7 +32,6 @@ def code_as_012(permutation, wSize=1, ofile=None):
                 if p not in breakpoints:
                     breakpoints.append(p)
     breakpoints.sort()
-
     #####################################################################################################
 
     # Recode the sequences as binary breakpoint sequences (1 if they break away from ref, 2 towards ref,
@@ -40,7 +39,6 @@ def code_as_012(permutation, wSize=1, ofile=None):
 
     chimseq = []
     this_ref = permutation[0]
-
     for p in permutation:
         this_chimseq = []
         for b in breakpoints:
@@ -58,7 +56,6 @@ def code_as_012(permutation, wSize=1, ofile=None):
     # Non ambigious positons go from 0/2 to 0/1
     # Ambiguous positions are split as two separate 0/1 positions (the 0/1 state first, the 0/2 state next)
     all_positions = []
-
     for i, x in enumerate(chimseq[0]):
         this_position = [x[i] for x in chimseq]
         if 1 not in this_position and 2 in this_position:

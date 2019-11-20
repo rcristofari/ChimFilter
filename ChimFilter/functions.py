@@ -1,3 +1,5 @@
+from ChimFilter.code_as_012 import code_as_012
+
 def splitlist(x, by):
     levels = [x for x in set(by)]
     levels.sort()
