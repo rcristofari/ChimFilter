@@ -65,6 +65,6 @@ def rank_permutations_optimum(aln):
 
     # Check if best distance is also best coverage:
     if sorted_stats[0][1] == max(parentcov):
-        print("Best distance is best coverage")
+        print("Best distance is also best coverage")
 
     return([keptPermutations, keptStats, keptNames])
