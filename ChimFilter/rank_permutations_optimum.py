@@ -9,7 +9,7 @@ def rank_permutations_optimum(aln):
     names = aln[2]
 
     # Identify the permutation that maximises the difference between parent sequences:
-    permutations, distances, maxBreaks, biBreaks, stats, parentcov, parentNames = [], [], [], [], [], [], []
+    permutations, distances, maxBreaks, biBreaks, stats, parentcov, parentNames, parentCov = [], [], [], [], [], [], [], []
 
     for k, ref in enumerate(coded):
         this_permutation = [tuple([0 if s[i] == y else 1 for i, y in enumerate(ref)]) for s in coded]
@@ -18,6 +18,9 @@ def rank_permutations_optimum(aln):
         parent1 = [i for i, d in enumerate(dist) if d == max(dist)][0]  # id of the second parent in the list
         parent0_name = names[k]
         parent1_name = names[parent1]
+
+        isParent = [0 if i not in [k, parent1] else 1 for i, x in enumerate(coded)]
+        parentCov.append([isParent, coverage])
 
         verbose = False
         if verbose:
@@ -67,4 +70,4 @@ def rank_permutations_optimum(aln):
     if sorted_stats[0][1] == max(parentcov):
         print("Best distance is also best coverage")
 
-    return([keptPermutations, keptStats, keptNames])
+    return([keptPermutations, keptStats, keptNames, parentCov, parentNames])
